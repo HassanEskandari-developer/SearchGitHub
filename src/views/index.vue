@@ -1,6 +1,6 @@
 <template>
   <main
-    class="h-auto lg:min-h-screen w-full flex justify-center items-center bg-[#141c30] relative"
+    class="h-[150vh] lg:h-auto lg:min-h-screen  w-full flex justify-center lg:items-center bg-[#141c30] relative py-10 lg:py-0"
   >
     <div
       v-if="isLoading"
@@ -15,11 +15,6 @@
     </div>
 
     <section class="lg:w-[800px] w-[90%] h-[650px] flex flex-col gap-10">
-      <div class="w-full h-[50px] flex justify-between items-center">
-        <span class="text-white">Lorem, ipsum.</span>
-        <span class="text-white">Lorem, ipsum.</span>
-      </div>
-
       <!-- ////////////////////////////////////////search/////////////////////////////////////////////////////////////////////////// -->
 
       <div class="w-full relative">
@@ -51,13 +46,23 @@
       </div>
 
       <!-- //////////////////////found///////////////////// -->
-      <p v-if="!gitSearch" class=" bg-red-500 text-white flex justify-center items-center h-10 text-2xl font-bold rounded-[10px]">Please enter your username</p>
-      <p v-else-if="gitSearch && !responser" class=" bg-red-500 text-white flex justify-center items-center h-10 text-2xl font-bold rounded-[10px]">Please enter your username correctly</p>
+      <p
+        v-if="!gitSearch"
+        class="bg-red-500 text-white flex justify-center items-center h-10 text-2xl font-bold rounded-[10px]"
+      >
+        Please enter your username
+      </p>
+      <p
+        v-else-if="gitSearch && !responser"
+        class="bg-red-500 text-white flex justify-center items-center h-10 text-2xl font-bold rounded-[10px]"
+      >
+        Please enter your username correctly
+      </p>
       <div
         v-if="responser"
         class="w-full lg:h-[550px] rounded-[15px] flex bg-[#1f2a48]"
       >
-        <div class="lg:p-10 p-3">
+        <div class="lg:p-10 p-3 flex flex-col gap-y-4 ">
           <!-- <svg
             xmlns="http://www.w3.org/2000/svg"
             class="w-20 h-20 lg:w-32 lg:h-32 border rounded-full"
@@ -70,6 +75,51 @@
           </svg> -->
 
           <img :src="responser.avatar_url" alt="" class="rounded-full" />
+
+          <div class="flex justify-center items-center">
+            <p class="text-4xl text-[#FB6087]">You Joined GitHub</p>
+          </div>
+
+          <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+         <div class="lg:grid lg:grid-cols-3 flex flex-col lg:gap-x-5 gap-y-4 lg:gap-y-0 ">
+          <div class="flex flex-col justify-center items-center gap-y-2  ">
+            <div class="w-16 h-14 bg-[#343650] flex flex-col justify-center items-center relative rounded-[10px] shadow-2xl shadow-[#343650]">
+           <div class="w-16 h-10 border-b-[1px] border-b-gray-500"></div>
+          <span class="absolute text-4xl font-bold top-2 text-[#FB6087]">{{YearsGit}}</span>
+          <div class="w-16 h-10"></div>
+         </div>
+         <span class="text-white text-xl">Years</span>
+         </div>
+
+         <!-- //////////////////// -->
+
+         <div class="flex flex-col justify-center items-center gap-y-2">
+            <div class="w-16 h-14 bg-[#343650] flex flex-col justify-center items-center relative rounded-[10px] shadow-2xl shadow-[#343650]">
+           <div class="w-16 h-10 border-b-[1px] border-b-gray-500"></div>
+          <span class="absolute text-4xl font-bold top-2 text-[#FB6087]">{{MounthGit}}</span>
+          <div class="w-16 h-10"></div>
+         </div>
+         <span class="text-white text-xl">Mounth</span>
+         </div>
+         <!-- ///////////////////// -->
+
+         <div class="flex flex-col justify-center items-center  gap-y-2">
+            <div class="w-16 h-14 bg-[#343650] flex flex-col justify-center items-center relative rounded-[10px] shadow-2xl shadow-[#343650]">
+           <div class="w-16 h-10 border-b-[1px] border-b-gray-500"></div>
+          <span class="absolute text-4xl font-bold top-2 text-[#FB6087]">{{DayGit}}</span>
+          <div class="w-16 h-10"></div>
+         </div>
+         <span class="text-white text-xl">Day</span>
+         </div>
+         <!-- //////////////////// -->
+         </div>
+
+        
+
+
+          <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+          
         </div>
 
         <!-- /////////////////..................../////////////////////////////// -->
@@ -78,7 +128,9 @@
           <div class="flex flex-col">
             <div class="flex flex-col lg:flex-row lg:justify-between">
               <span class="text-white text-xl"
-                ><a target="_blank" :href="responser.html_url">{{ responser.name }}</a></span
+                ><a target="_blank" :href="responser.html_url">{{
+                  responser.name
+                }}</a></span
               >
               <span class="text-gray-300"
                 >joined
@@ -96,7 +148,9 @@
               >
             </div>
             <span class="text-blue-600"
-              ><a target="_blank" :href="responser.html_url">{{ responser.login }}</a></span
+              ><a target="_blank" :href="responser.html_url">{{
+                responser.login
+              }}</a></span
             >
           </div>
 
@@ -106,18 +160,18 @@
 
           <!-- /////////////////////numberflow/////////////////////////////////// -->
           <div
-            class="h-20 lg:h-16 flex py-2 px-3 lg:pl-7 lg:gap-x-20 gap-x-3 rounded-[10px] bg-[#141c2f]"
+            class=" lg:h-16 flex flex-col md:flex-row h-auto py-2 px-3 lg:pl-7 lg:gap-x-20 gap-x-3 rounded-[10px] bg-[#141c2f] gap-y-3 md:gap-y-0"
           >
             <div class="flex flex-col">
-              <h2 class="text-gray-400">repose</h2>
+              <h2 class="text-gray-400">Repositories</h2>
               <span class="text-white">{{ responser.public_repos }}</span>
             </div>
             <div class="flex flex-col">
-              <h2 class="text-gray-400">folowers</h2>
+              <h2 class="text-gray-400">Followers</h2>
               <span class="text-white">{{ responser.followers }}</span>
             </div>
             <div class="flex flex-col">
-              <h2 class="text-gray-400">following</h2>
+              <h2 class="text-gray-400">Following</h2>
               <span class="text-white">{{ responser.following }}</span>
             </div>
           </div>
@@ -135,13 +189,15 @@
                   d="M12 23.7279L5.63604 17.364C2.12132 13.8492 2.12132 8.15076 5.63604 4.63604C9.15076 1.12132 14.8492 1.12132 18.364 4.63604C21.8787 8.15076 21.8787 13.8492 18.364 17.364L12 23.7279ZM16.9497 15.9497C19.6834 13.2161 19.6834 8.78392 16.9497 6.05025C14.2161 3.31658 9.78392 3.31658 7.05025 6.05025C4.31658 8.78392 4.31658 13.2161 7.05025 15.9497L12 20.8995L16.9497 15.9497ZM12 13C10.8954 13 10 12.1046 10 11C10 9.89543 10.8954 9 12 9C13.1046 9 14 9.89543 14 11C14 12.1046 13.1046 13 12 13Z"
                 ></path>
               </svg>
-              <p class="text-gray-300">{{ responser.location }}</p>
+              <p class="text-gray-300">
+                {{ responser.location ? responser.location : "-" }}
+              </p>
             </div>
             <!-- ///////////////////////////// -->
             <div class="flex gap-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-6 h-6 text-gray-400"
+                class="w-6 h-6 text-white"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -149,10 +205,11 @@
                   d="M15.3499 5.55005C13.7681 5.55005 12.4786 6.81809 12.4504 8.39658L12.4223 9.97162C12.4164 10.3029 12.143 10.5667 11.8117 10.5608C11.7881 10.5604 11.7646 10.5586 11.7413 10.5554L10.1805 10.3426C8.12699 10.0625 6.15883 9.11736 4.27072 7.54411C3.67275 10.8538 4.84 13.1472 7.65342 14.916L9.40041 16.0142C9.68095 16.1906 9.7654 16.561 9.58903 16.8415C9.54861 16.9058 9.49636 16.9619 9.43504 17.0067L7.84338 18.1696C8.78973 18.229 9.68938 18.1875 10.435 18.0387C15.1526 17.0973 18.2897 13.547 18.2897 7.69109C18.2897 7.213 17.2774 5.55005 15.3499 5.55005ZM10.4507 8.3609C10.4983 5.69584 12.6735 3.55005 15.3499 3.55005C16.7132 3.55005 17.9465 4.10683 18.8348 5.0054C19.5462 5.00005 20.1514 5.17991 21.5035 4.35967C21.1693 6.00005 21.0034 6.71201 20.2897 7.69109C20.2897 15.3326 15.5926 19.0489 10.8264 20C7.5587 20.6522 2.80646 19.5815 1.44531 18.1587C2.13874 18.1054 4.95928 17.802 6.58895 16.6092C5.20994 15.6987 -0.278631 12.4681 3.32772 3.78642C5.02119 5.76307 6.73797 7.10855 8.47807 7.82286C9.63548 8.29798 9.91978 8.2885 10.4507 8.3609Z"
                 ></path>
               </svg>
-              <p v-if="responser.twitter_username" class="text-gray-400">
-                {{ responser.twitter_username }}
+              <p class="text-gray-300">
+                {{
+                  responser.twitter_username ? responser.twitter_username : "-"
+                }}
               </p>
-              <p v-else class="text-gray-400">No avaibel</p>
             </div>
             <!-- /////////////////////////// -->
             <div class="flex gap-3">
@@ -166,7 +223,9 @@
                   d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"
                 ></path>
               </svg>
-              <p class="text-gray-300">{{ responser.blog }}</p>
+              <p class="text-gray-300">
+                {{ responser.blog ? responser.blog : "-" }}
+              </p>
             </div>
 
             <!-- /////////////////////////// -->
@@ -181,7 +240,9 @@
                   d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"
                 ></path>
               </svg>
-              <p class="text-gray-300">{{ responser.company }}</p>
+              <p class="text-gray-300">
+                {{ responser.company ? responser.company : "-" }}
+              </p>
             </div>
           </div>
         </div>
@@ -199,16 +260,46 @@ export default {
       responser: null,
       allDate: "",
       isLoading: false,
+      d: "",
+      m: "",
+      y: "",
+      year: "",
+      month: "",
+      day: "",
     };
   },
-  computed: {},
+  computed: {
+    DayGit() {
+      this.gitDateFunc()
+      //  return `You joined github ${this.y} years and ${this.m} months and ${this.d} day ago`;
+       return `${this.d}`;
+    },
+    MounthGit() {
+      this.gitDateFunc()
+      //  return `You joined github ${this.y} years and ${this.m} months and ${this.d} day ago`;
+       return `${this.m}`;
+    },
+    YearsGit() {
+      this.gitDateFunc()
+      //  return `You joined github ${this.y} years and ${this.m} months and ${this.d} day ago`;
+      //  return `${this.y}`;
+     
+        // return this.y
+        if(this.y==0){
+          this.y=''
+        }else{
+          return this.y
+        }
+      
+    },
+  },
   methods: {
     async serchGit() {
       try {
         if (this.gitSearch && this.gitSearch.length > 0) {
           this.responser = null;
           const octokit = new Octokit({
-            auth: "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",
+            auth: "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",
           });
           this.isLoading = true;
           const response = await octokit.request(
@@ -221,14 +312,38 @@ export default {
             }
           );
           this.responser = response.data;
+          this.day = new Date(this.responser.created_at).getDate();
+          this.month = new Date(this.responser.created_at).getMonth() + 1;
+          this.year = new Date(this.responser.created_at).getFullYear();
           console.log(response);
         }
       } catch (error) {
         console.log(error.response);
       } finally {
-        this.isLoading=false
+        this.isLoading = false;
       }
     },
+
+    gitDateFunc(){
+        let nowTime = new Date();
+      let d1 = nowTime.getDate();
+      let m1 = nowTime.getMonth() + 1;
+      let y1 = nowTime.getFullYear();
+      let allMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+      if (this.day > d1) {
+        d1 = d1 + allMonth[m1 - 1];
+        m1 = m1 - 1;
+      }
+      if (this.month > m1) {
+        m1 = m1 + 12;
+        y1 = y1 - 1;
+      }
+
+      this.d = d1 - this.day;
+      this.m = m1 - this.month;
+      this.y = y1 - this.year;
+     
+    }
   },
 };
 </script>
